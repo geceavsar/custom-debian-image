@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Monitor for new windows and ensure they're maximized
+while true; do
+    # Check for new application windows every 5 seconds
+    for window_id in $(wmctrl -l | grep -v "Desktop" | awk '{print $1}'); do
+        # Check if window is maximized
+        window_state=$(xprop -id $window_id _NET_WM_STATE 2>/dev/null)
+        if ! echo "$window_state" | grep -q "_NET_WM_STATE_MAXIMIZED"; then
+            wmctrl -i -r $window_id -b add,fullscreen
+        fi
+    done
+    sleep 5
+done

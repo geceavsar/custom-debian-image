@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# disabling getty in case of not using custom partitions (kernel flags cannot be altered)
+systemctl enable disable-getty-ttys.service || true
+systemctl enable disable-getty-ttys.path || true

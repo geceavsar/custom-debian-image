@@ -1,0 +1,7 @@
+
+deb [trusted=yes] http://deb.debian.org/debian bullseye main contrib non-free
+deb-src [trusted=yes] http://deb.debian.org/debian bullseye main contrib non-free
+
+# Security updates for bullseye
+deb [trusted=yes] http://security.debian.org/debian-security bullseye-security main contrib non-free
+

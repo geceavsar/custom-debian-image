@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Basic X environment setup
+export XDG_CURRENT_DESKTOP=Minimal
+export XDG_SESSION_DESKTOP=minimal
+
+# Do not override DISPLAY; LightDM sets it
+
+# Disable power management and screensaver (best-effort)
+command -v xset >/dev/null 2>&1 && {
+  xset -dpms || true
+  xset s off || true
+  xset s noblank || true
+}
+
+# Set black background (best-effort)
+command -v xsetroot >/dev/null 2>&1 && xsetroot -solid black || true
+
+# Run Openbox in the foreground to keep session alive
+exec openbox

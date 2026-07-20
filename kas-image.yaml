@@ -1,0 +1,15 @@
+header:
+  version: 17
+
+target: custom-image
+
+local_conf_header:
+  img-wic-settings: |
+    WKS_FILE:qemuamd64 = "custom-partitions-qemu"
+    WKS_FILE:x86-pc    = "custom-partitions"
+
+  # mask the recipes that you don't want to include in your image
+  # but still want to keep them. very useful for producing images from  
+  # multiple bitbakes in the same repository.
+  #img-mask-settings: |
+  #  BBMASK = ".*/recipes-xyz/.*"

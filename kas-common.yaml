@@ -1,0 +1,38 @@
+header:
+  version: 17
+
+build_system: isar
+machine: ${KAS_MACHINE:-qemuamd64}
+distro: debian-trixie
+
+repos:
+  meta-custom: 
+    path: meta-custom
+
+  isar:
+    url: https://github.com/ilbers/isar.git
+    commit: f8558fcf3ecf98e58853b82d89645bcedb24b853
+    layers:
+      meta:
+      meta-isar:
+
+local_conf_header:
+  image-format: |
+    DISTRO_ARCH = "amd64"
+    HOST_ARCH = "amd64"
+
+  custom-wic: |
+    IMAGE_FSTYPES = "wic"
+    IMAGE_CMD = "wic" 
+    WIC_CREATE_EXTRA_ARGS = "--bmap"
+    WIC_DEPLOY_PARTITIONS = "1"
+
+  build-settings: |
+    PARALLEL_MAKE = "-j ${@oe.utils.cpu_count()}"
+    INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+    RM_OLD_IMAGE = "1"
+    PACKAGE_CLASSES = "package_deb"
+    INIT_MANAGER = "systemd"
+
+env: 
+  HOSTNAME: "custom-debian"

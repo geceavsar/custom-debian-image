@@ -1,0 +1,5 @@
+build/
+isar/
+deploy/
+*.log
+.DS_Store

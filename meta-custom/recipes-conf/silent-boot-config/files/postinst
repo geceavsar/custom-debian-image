@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+# Default to the graphical target. This is safe in the offline build chroot
+# (systemctl just manages the default.target symlink).
+systemctl set-default graphical.target || true
+
+# NOTE: update-grub is intentionally NOT run here. It calls grub-probe, which
+# needs a real root block device and fails during the ISAR build with
+# "cannot find a device for / (is /dev mounted?)". grub.cfg is regenerated at
+# first boot by silent-boot-apply.service instead.
+

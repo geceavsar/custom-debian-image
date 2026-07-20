@@ -1,0 +1,8 @@
+
+Package: nano
+Pin: release n=bullseye
+Pin-Priority: 1000
+
+Package: fail2ban
+Pin: release n=trixie
+Pin-Priority: 1000

@@ -1,0 +1,9 @@
+part /boot --source bootimg-efi-isar --sourceparams "loader=grub-efi" --ondisk sda --label efi --part-type EF00 --align 1024 --use-uuid
+
+# Root is sized to content (small) and carries the discoverable GPT
+# "root-x86-64" type GUID (4F68BCE3-...) so systemd-repart can match and grow
+# it on first boot. It MUST stay the last real partition so repart can append
+# /home right after it. Do NOT add any partition below this line.
+part / --source rootfs --ondisk sda --fstype ext4 --mkfs-extraopts "-T default" --label platform --part-type 4F68BCE3-E8CD-4DB1-96E7-FBCAF984B709 --align 1024 --use-uuid --exclude-path boot/
+
+bootloader --ptable gpt --timeout 3 --append "rootwait console=tty0"

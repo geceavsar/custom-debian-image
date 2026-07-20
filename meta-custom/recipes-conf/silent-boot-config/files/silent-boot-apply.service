@@ -1,0 +1,13 @@
+[Unit]
+Description=Apply silent-boot GRUB settings on first boot
+ConditionPathExists=/var/lib/silent-boot/apply.flag
+After=local-fs.target
+Before=display-manager.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/silent-boot-apply
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target

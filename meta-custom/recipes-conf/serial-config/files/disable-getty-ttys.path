@@ -1,0 +1,10 @@
+[Unit]
+Description=Watch for getty-ttys* being enabled and disable them
+
+[Path]
+PathExistsGlob=/etc/systemd/system/*.wants/serial-getty@ttys*.service
+PathChanged=/etc/systemd/system/*.wants/serial-getty@ttys*.service
+Unit=disable-getty-ttys.service
+
+[Install]
+WantedBy=multi-user.target

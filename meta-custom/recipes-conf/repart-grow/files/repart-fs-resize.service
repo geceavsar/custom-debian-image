@@ -1,0 +1,14 @@
+[Unit]
+Description=Resize root/home filesystems after systemd-repart
+ConditionPathExists=/var/lib/repart/resize.stamp
+After=local-fs.target
+Before=display-manager.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/repart-fs-resize
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target
+

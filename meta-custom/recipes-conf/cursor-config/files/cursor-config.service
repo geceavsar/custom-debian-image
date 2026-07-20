@@ -1,0 +1,16 @@
+[Unit]
+Description=unclutter for hiding cursor on touchscreen
+ConditionPathExists=/tmp/.X11-unix/
+
+[Service]
+ExecStart=/bin/unclutter-xfixes --timeout 5 --jitter 50 --hide-on-touch --start-hidden --fork
+Restart=always
+RestartSec=3
+Type=forking
+User=user
+Group=user
+Environment=DISPLAY=:0
+TimeoutStartSec=30s
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+chown -R 1000:1000 /home/user/.ssh
+
+cat << HEREDOC >> /etc/ssh/sshd_config
+PermitRootLogin no
+PubkeyAuthentication yes
+PubkeyAcceptedAlgorithms ssh-ed25519
+PasswordAuthentication no
+AuthenticationMethods publickey
+HEREDOC
+
+systemctl restart sshd

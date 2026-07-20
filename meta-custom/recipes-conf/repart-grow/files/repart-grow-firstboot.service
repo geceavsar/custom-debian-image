@@ -1,0 +1,14 @@
+[Unit]
+Description=Expand disk with systemd-repart on first boot
+ConditionPathExists=/var/lib/repart/expand.flag
+After=local-fs.target
+Before=display-manager.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/repart-grow-firstboot
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target
+

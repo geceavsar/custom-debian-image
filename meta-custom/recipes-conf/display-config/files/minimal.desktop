@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=MinimalDesktop
+Comment=Minimal X session
+Exec=/usr/bin/minimal-session
+TryExec=/usr/bin/minimal-session
+Type=Application
+DesktopNames=MinDesktop
