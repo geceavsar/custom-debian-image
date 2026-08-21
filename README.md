@@ -1,9 +1,7 @@
-# custom-image
-
 Build custom Debian images with BitBake, ISAR, and kas. For personal use.
 
 > **Note:** This repository is for **personal use**. It is not a supported
-> product and comes with no warranty.
+> product and comes with no warranty. This README is written with the help of an AI agent. 
 
 ## Overview
 
